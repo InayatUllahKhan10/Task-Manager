@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CiHeart } from "react-icons/ci";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
@@ -11,14 +10,12 @@ const Cards = ({ home }) => {
             task: "Complete the JavaScript section",
             desc: "I need to clear basic topics.",
             status: "Incomplete",
-            liked: false, // Track if the task is liked
         },
         {
             title: "The Best Coding Assignment:",
             task: "Solve all React exercises",
             desc: "I need to clear basic topics further.",
             status: "Complete",
-            liked: true, // This one is already liked
         },
     ]);
 
@@ -29,7 +26,7 @@ const Cards = ({ home }) => {
     // Function to handle task addition
     const handleAddTask = () => {
         if (newTask.title && newTask.task && newTask.desc) {
-            setTasks([...tasks, { ...newTask, status: "Incomplete", liked: false }]);
+            setTasks([...tasks, { ...newTask, status: "Incomplete" }]);
             setNewTask({ title: "", task: "", desc: "" });
             setIsAddingTask(false); // Close the add task form
         }
@@ -38,13 +35,6 @@ const Cards = ({ home }) => {
     // Function to handle task deletion
     const handleDeleteTask = (index) => {
         setTasks(tasks.filter((_, i) => i !== index));
-    };
-
-    // Function to toggle like status
-    const toggleLike = (index) => {
-        const updatedTasks = [...tasks];
-        updatedTasks[index].liked = !updatedTasks[index].liked;
-        setTasks(updatedTasks);
     };
 
     // Function to handle task editing
@@ -65,6 +55,13 @@ const Cards = ({ home }) => {
         setEditingTask(null); // Close the editing form
     };
 
+    // Function to update task status
+    const handleStatusChange = (index, newStatus) => {
+        const updatedTasks = [...tasks];
+        updatedTasks[index].status = newStatus;
+        setTasks(updatedTasks);
+    };
+
     return (
         <div className='grid grid-cols-3 gap-4 p-4'>
             {tasks.map((task, i) => (
@@ -78,15 +75,22 @@ const Cards = ({ home }) => {
                         <p className='text-gray-300 my-2'>Description: {task.desc}</p>
                     </div>
                     <div className='mt-4 w-full flex items-center'>
-                        <button className={`${task.status === "Incomplete" ? "bg-red-400" : "bg-green-700"} p-2 rounded text-white`}>
-                            {task.status}
-                        </button>
+                        <select
+                            value={task.status}
+                            onChange={(e) => handleStatusChange(i, e.target.value)}
+                            className={`p-2 rounded text-white ${
+                                task.status === "Incomplete"
+                                    ? "bg-red-500"
+                                    : task.status === "Complete"
+                                    ? "bg-green-500"
+                                    : "bg-yellow-500"
+                            }`}
+                        >
+                            <option value="Incomplete">Incomplete</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Complete">Complete</option>
+                        </select>
                         <div className='text-white p-2 w-3/6 text-2xl font-semibold flex justify-around'>
-                            {/* Like Button */}
-                            <button onClick={() => toggleLike(i)}>
-                                <CiHeart className={task.liked ? "text-red-500" : ""} /> {/* Changes color if liked */}
-                            </button>
-
                             {/* Edit Button */}
                             <button onClick={() => startEditingTask(i)}>
                                 <FaEdit />
