@@ -1,0 +1,158 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 15px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo h1 {
+    color: white;
+    margin: 0;
+    font-size: 28px;
+  }
+  
+  .logo span {
+    color: #FFD700;
+    font-weight: 700;
+  }
+  
+  .nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    background-color: white;
+    color: #4CAF50;
+    border-radius: 4px;
+  }
+  
+  /* Sign Up & Login Button Styling */
+  .signup-btn, .login-btn {
+    background-color: rgb(153, 206, 138);
+    color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .signup-btn:hover {
+    background-color: #FFD700;
+    color: white;
+  }
+  
+  .login-btn:hover {
+    background-color: #ffa726;
+    color: white;
+  }
+  
+  /* Hero Section Styling */
+  .hero-section {
+    text-align: center;
+    margin-top: 100px;
+    padding: 60px 20px;
+    background-color: #e8f5e9;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .hero-section h2 {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 25px;
+  }
+  
+  .hero-section span {
+    color: #4CAF50;
+  }
+  
+  .hero-section p {
+    font-size: 22px;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  
+  .cta-button {
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #4CAF50;
+    color: rgb(3, 3, 3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #388e3c;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Features Section */
+  .features {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 20px;
+    background-color: white;
+    margin-top: 60px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature {
+    text-align: center;
+    flex: 1;
+    margin: 0 30px;
+  }
+  
+  .feature h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #4CAF50;
+    font-weight: 600;
+  }
+  
+  .feature p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Footer Section */
+  .footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 60px;
+    border-radius: 0 0 10px 10px;
+  }
+  
