@@ -14,23 +14,67 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!formData.role) {
+  //     alert('Please select a role!');
+  //     return;
+  //   }
+    
+  //   // Retrieve stored role from localStorage (in a real app, you would fetch this from the backend)
+  //   const storedRole = localStorage.getItem('userRole');
+
+  //   if (storedRole === formData.role) {
+  //     alert(`Logged in as ${formData.role}`);
+  //     navigate('/dashboard'); // Redirect to the dashboard after login
+  //   } else {
+  //     alert('Role does not match. Please check your role.');
+  //   }
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Ensure role is selected
     if (!formData.role) {
       alert('Please select a role!');
       return;
     }
-    
-    // Retrieve stored role from localStorage (in a real app, you would fetch this from the backend)
-    const storedRole = localStorage.getItem('userRole');
-
-    if (storedRole === formData.role) {
-      alert(`Logged in as ${formData.role}`);
-      navigate('/dashboard'); // Redirect to the dashboard after login
-    } else {
-      alert('Role does not match. Please check your role.');
+  
+    try {
+      // Send login request to the backend
+      const response = await fetch('http://localhost:5000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          role: formData.role,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        // Assuming the backend returns a token and the user's role
+        const { token, userRole } = data;
+  
+        // Save the token and role to localStorage
+        localStorage.setItem('token', token);
+        localStorage.setItem('userRole', userRole);
+  
+        alert(`Logged in as ${userRole}`);
+        navigate('/dashboard'); // Redirect to the dashboard after login
+      } else {
+        alert(data.message || 'Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred during login. Please try again later.');
     }
   };
+  
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-600 to-blue-500'>
