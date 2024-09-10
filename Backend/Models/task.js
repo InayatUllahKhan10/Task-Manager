@@ -1,16 +1,13 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 const TaskSchema = new mongoose.Schema(
   {
+    assigneeMail: {
+      type: String, // Assignee email
+      required: true,
+    },  
     title: {
       type: String,
-      required: true,
-      unique: true,
-    },
-    date:{
-      type: Date,
-      required: true,
-      default: new Date()
+      required: true
     },
     desc: {
       type: String,
@@ -20,25 +17,6 @@ const TaskSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    // activities: [
-    //   {
-    //     type: {
-    //       type: String,
-    //       default: "assigned",
-    //       enum: [
-    //         "assigned",
-    //         "started",
-    //         "in progress",
-    //         "bug",
-    //         "completed",
-    //         "commented",
-    //       ],
-    //     },
-    //     activity: String,
-    //     date: { type: Date, default: new Date() },
-    //     by: { type: Schema.Types.ObjectId, ref: "User" },
-    //   },
-    // ],
     complete: {
       type: Boolean,
       default: false,

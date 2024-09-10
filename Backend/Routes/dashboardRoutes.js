@@ -1,22 +1,15 @@
+// routes/dashboard.js
 const express = require('express');
-const { protectRoute, roleBasedAccess } = require('../middlewares/authMiddleware');
-
 const router = express.Router();
+const { authenticateJWT } = require('../middlewares/authMiddleware');
+const roleMiddleware = require('../middlewares/roleMiddleware');
 
-
-// Admin dashboard route
-router.get('/admin', protectRoute, roleBasedAccess(['admin']), (req, res) => {
-  res.json({ message: "Welcome to the admin dashboard" });
+// Apply authentication and role-based middleware
+router.get('/dashboard', authenticateJWT, roleMiddleware(['admin', 'manager']), (req, res) => {
+    res.json({ message: 'Welcome to the dashboard!' });
 });
-
-// Project manager dashboard route
-router.get('/', protectRoute, roleBasedAccess(['admin', 'manager']), (req, res) => {
-  res.json({ message: "Welcome to the project manager dashboard" });
-});
-
-// Team member dashboard route
-router.get('/user', protectRoute, roleBasedAccess(['admin', 'manager', 'user']), (req, res) => {
-  res.json({ message: "Welcome to the team member dashboard" });
+router.get('/userhome', authenticateJWT, roleMiddleware(['user']), (req, res) => {
+  res.json({ message: 'Welcome to the dashboard!' });
 });
 
 module.exports = router;
