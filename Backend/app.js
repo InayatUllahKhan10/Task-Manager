@@ -9,6 +9,7 @@ const dashboardRoutes=require('./Routes/dashboardRoutes');
 const { authenticateJWT } = require('./middlewares/authMiddleware');
 const roleMiddleware = require('./middlewares/roleMiddleware');
 require("./Connection/conn");
+const task=require('./Routes/task')
 
 
 
@@ -26,6 +27,8 @@ app.get("/", (req, res) => {
 // });
 app.use('/auth',userRoutes)
 app.use('/api', dashboardRoutes);
+app.use('/api', task);
+
 
 app.use(routeNotFound)
 app.use(errorHandler)

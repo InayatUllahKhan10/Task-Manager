@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "../components/HOME/Sidebar";
-import { Outlet } from 'react-router-dom'
+import Alltask from "./Alltask";
+// import { Outlet } from 'react-router-dom'
 
 const Home = () => {
     return (
@@ -11,7 +12,7 @@ const Home = () => {
             </div>
 
             <div className="w-5/6 border border-gray-800 rounded-xl p-4 ">
-                <Outlet />
+                <Alltask />
             </div>
         </div>
 

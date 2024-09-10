@@ -38,11 +38,11 @@ const Sidebar = () => {
             icon: <CgNotes />,
             link: "/dashboard" // Set the link for your dashboard route
         },
-        {
-            title: "All tasks",
-            icon: <CgNotes />,
-            link: "/"
-        },
+        // {
+        //     title: "All tasks",
+        //     icon: <CgNotes />,
+        //     link: "/alltask"
+        // },
         {
             title: "Important tasks",
             icon: <MdLabelImportant />,

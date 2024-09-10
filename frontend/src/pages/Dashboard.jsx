@@ -3,12 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate for
 import { FaTasks, FaUserAlt, FaChartBar, FaCog } from 'react-icons/fa';
 import { AiOutlineLogout } from 'react-icons/ai';
 
-
 const Dashboard = () => {
   const navigate = useNavigate();  // Initialize the navigate function
 
   const handleBack = () => {
-    navigate("/");  // Navigate to the previous page
+    navigate("/hometask");  // Navigate to the /hometask page
   };
 
   return (
@@ -65,7 +64,7 @@ const Dashboard = () => {
               onClick={handleBack}
               className="px-4 py-2 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 transition"
             >
-              Back
+              Assign Task
             </button>
           </div>
 

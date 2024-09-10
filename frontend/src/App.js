@@ -66,7 +66,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
-import Alltask from './pages/Alltask';
+// import Alltask from './pages/Alltask';
 import ImportantTask from './pages/ImportantTask';
 import CompletedTask from './pages/CompletedTask';
 import IncompletedTask from './pages/IncompleteTask';
@@ -77,6 +77,7 @@ import Dashboard from './pages/Dashboard';
 import UserHome from './pages/UserHome';
 import Homepage from './components/HomePage';
 import { AuthProvider, useAuth } from './pages/AuthContext'; // Import AuthProvider and useAuth
+import './App.css';
 
 const ProtectedRoute = ({ element, roles }) => {
     const { isAuthenticated, userRole } = useAuth();
@@ -94,12 +95,13 @@ const ProtectedRoute = ({ element, roles }) => {
 
 const App = () => {
     return (
+      <div className="bg-gray-900 dark:bg-white dark:text-black text-white h-screen p-2 transition-colors duration-500 relative">
         <AuthProvider> {/* Wrap the app with AuthProvider */}
             <Router>
                 <Routes>
                     <Route path="/" element={<Homepage />} />
                     <Route path="/hometask" element={<Home />} />
-                    <Route path="/alltask" element={<Alltask />} />
+                    {/* <Route path="/alltask" index element={<Alltask />} /> */}
                     <Route path="/importantTask" element={<ImportantTask />} />
                     <Route path="/completedTask" element={<CompletedTask />} />
                     <Route path="/incompletedTask" element={<IncompletedTask />} />
@@ -112,6 +114,9 @@ const App = () => {
                 </Routes>
             </Router>
         </AuthProvider>
+      </div>
+        
+
     );
 };
 

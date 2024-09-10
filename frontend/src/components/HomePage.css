@@ -155,4 +155,42 @@ body {
     margin-top: 60px;
     border-radius: 0 0 10px 10px;
   }
-  
+ /* Styling the Team Heading */
+.team-heading {
+  font-size: 2.5rem;
+  color: #2c5282; /* Deep blue for a professional look */
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+/* Styling the Team Members Container */
+.team-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Spacing between team members */
+  margin: 20px 0;
+}
+
+/* Individual Team Member Styling */
+.team-member {
+  font-size: 1.5rem;
+  color: #2d3748; /* Dark grey text */
+  font-weight: bold;
+  background-color: #e2e8f0; /* Light grey background */
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Hover Effect on Team Members */
+.team-member:hover {
+  transform: translateY(-5px); /* Slight upward movement on hover */
+  background-color: #63b3ed; /* Soft blue background on hover */
+  color: white; /* White text on hover */
+}
