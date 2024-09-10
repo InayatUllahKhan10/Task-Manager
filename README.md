@@ -29,10 +29,15 @@ Install Dependencies for Tailwind
 Install Dependencies
 `npm install`
 
-Run the Application
+Run the Application for Frontend
 `npm run start`
 
+Intsall Dependencies 
+`npm install`
+`npm install nodemon`
 
+Run Application for Backend
+`nodemon App.js`
 
 Build for Production
 `npm run build`
