@@ -12,8 +12,8 @@ const HomePage = () => {
         </div>
         <ul className="nav-links">
           {/* <li><Link to="/dashboard">Dashboard</Link></li> */}
-          <li><Link to="/signup" className="signup-btn">Sign Up</Link></li>
-          <li><Link to="/login" className="login-btn">Login</Link></li>
+          <li><Link to="/auth/signup" className="signup-btn">Sign Up</Link></li>
+          <li><Link to="/auth/login" className="login-btn">Login</Link></li>
         </ul>
       </nav>
 

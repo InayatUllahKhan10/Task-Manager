@@ -15,18 +15,61 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (formData.password !== formData.confirmPassword) {
+  //     alert('Passwords do not match!');
+  //     return;
+  //   }
+
+  //   // Simulate saving user role to localStorage (you'd normally send this to a backend)
+  //   localStorage.setItem('userRole', formData.role);
+
+  //   alert('Sign Up Successful!');
+  //   navigate('/login'); // Redirect to the login page
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-
-    // Simulate saving user role to localStorage (you'd normally send this to a backend)
-    localStorage.setItem('userRole', formData.role);
-
-    alert('Sign Up Successful!');
-    navigate('/login'); // Redirect to the login page
+  
+    try {
+      // Send signup request to the backend
+      const response = await fetch('http://localhost:5000/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          role: formData.role,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        // Assuming the backend sends a success message or token
+        alert('Sign Up Successful!');
+  
+        // Optionally, save user role or token to localStorage
+        localStorage.setItem('userRole', data.role || formData.role);
+  
+        // Redirect to login page after successful signup
+        navigate('/login');
+      } else {
+        // Handle error if signup failed
+        alert(data.message || 'Sign up failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during sign up:', error);
+      alert('An error occurred during sign up. Please try again later.');
+    }
   };
 
   return (

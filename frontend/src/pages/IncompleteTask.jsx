@@ -1,11 +1,11 @@
 import React from 'react';
+import Cards from '../components/HOME/Cards';
 
 const IncompletedTask = () => {
     return (
         <div>
-            <h1>Incompleted Tasks</h1>
-            {/* Other content goes here */}
-        </div>
+      <Cards home={"false"}/>
+    </div>
     );
 };
 

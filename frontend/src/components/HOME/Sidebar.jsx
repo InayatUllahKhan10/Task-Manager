@@ -63,8 +63,8 @@ const Sidebar = () => {
     return (
         <>
             <div>
-                <h2 className="text-xl font-semibold black">The Code Master</h2>
-                <h4 className="my-2 text-gray-400">tsm@gmail.com</h4>
+                <h2 className="text-xxl font-semibold black">CodeHive</h2>
+                <h4 className="my-2 text-gray-400">Lets GO</h4>
                 <hr />
             </div>
             <div>

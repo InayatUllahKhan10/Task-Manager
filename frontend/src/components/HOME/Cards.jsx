@@ -3,31 +3,37 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 
+// Mock function to get user details (replace with actual user data)
+const getUserDetails = () => {
+    return {
+        email: 'user@example.com'  // Replace this with actual logged-in user email
+    };
+};
+
 const Cards = ({ home }) => {
+    const userDetails = getUserDetails(); // Get the logged-in user's email
+
     const [tasks, setTasks] = useState([
         {
-            title: "The Best Coding Program:",
-            task: "Complete the JavaScript section",
-            desc: "I need to clear basic topics.",
-            status: "Incomplete",
+            title: "Inayat",
+            task: "Default Task Description",
+            desc: "This is a default task",
+            email: "Inayat@gmail.com",  // Adding email to default task
+            status: "status",
         },
-        {
-            title: "The Best Coding Assignment:",
-            task: "Solve all React exercises",
-            desc: "I need to clear basic topics further.",
-            status: "Complete",
-        },
+      
     ]);
 
-    const [newTask, setNewTask] = useState({ title: "", task: "", desc: "" });
+    // Add 'email' field in newTask state and prefill it with user's email
+    const [newTask, setNewTask] = useState({ title: "", task: "", desc: "", email: userDetails.email });
     const [isAddingTask, setIsAddingTask] = useState(false);
     const [editingTask, setEditingTask] = useState(null); // Track which task is being edited
 
     // Function to handle task addition
     const handleAddTask = () => {
-        if (newTask.title && newTask.task && newTask.desc) {
+        if (newTask.title && newTask.task && newTask.desc && newTask.email) {
             setTasks([...tasks, { ...newTask, status: "Incomplete" }]);
-            setNewTask({ title: "", task: "", desc: "" });
+            setNewTask({ title: "", email: userDetails.email, task: "", desc: "",}); // Reset form and prefill email
             setIsAddingTask(false); // Close the add task form
         }
     };
@@ -48,8 +54,10 @@ const Cards = ({ home }) => {
         updatedTasks[editingTask.index] = {
             ...updatedTasks[editingTask.index],
             title: editingTask.title,
+            email: editingTask.email,
             task: editingTask.task,
             desc: editingTask.desc,
+            // Update email as well during editing
         };
         setTasks(updatedTasks);
         setEditingTask(null); // Close the editing form
@@ -73,6 +81,7 @@ const Cards = ({ home }) => {
                         <h3 className='text-xl font-semibold text-white'>User: {task.title}</h3>
                         <h4 className='text-lg font-medium text-gray-400 my-2'>Task: {task.task}</h4>
                         <p className='text-gray-300 my-2'>Description: {task.desc}</p>
+                        <p className='text-gray-300 my-2'>Email: {task.email}</p> {/* Display the email */}
                     </div>
                     <div className='mt-4 w-full flex items-center'>
                         <select
@@ -83,9 +92,11 @@ const Cards = ({ home }) => {
                                     ? "bg-red-500"
                                     : task.status === "Complete"
                                     ? "bg-green-500"
+                                    
                                     : "bg-yellow-500"
                             }`}
                         >
+                            <option value="Status">Status</option>
                             <option value="Incomplete">Incomplete</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Complete">Complete</option>
@@ -133,6 +144,13 @@ const Cards = ({ home }) => {
                             className="px-4 py-3 rounded-lg w-full bg-gray-700 my-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out shadow-md hover:bg-gray-600"
                         />
                         <input
+                            type="email"
+                            placeholder="User Email"
+                            value={newTask.email}
+                            onChange={(e) => setNewTask({ ...newTask, email: e.target.value })}  // Allow email modification
+                            className="px-4 py-3 rounded-lg w-full bg-gray-700 my-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out shadow-md hover:bg-gray-600"
+                        />
+                        <input
                             type="text"
                             placeholder="Assign task"
                             value={newTask.task}
@@ -145,6 +163,7 @@ const Cards = ({ home }) => {
                             onChange={(e) => setNewTask({ ...newTask, desc: e.target.value })}
                             className="px-4 py-3 rounded-lg w-full bg-gray-700 my-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out shadow-md hover:bg-gray-600"
                         />
+                      
                         <button
                             onClick={handleAddTask}
                             className="px-6 py-3 bg-blue-500 rounded-lg text-white text-lg font-semibold shadow-lg transition-all duration-300 ease-in-out transform hover:bg-blue-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300 active:bg-blue-700 active:transform active:translate-y-1"
@@ -169,6 +188,13 @@ const Cards = ({ home }) => {
                             placeholder="Edit Task Title"
                             value={editingTask.title}
                             onChange={(e) => setEditingTask({ ...editingTask, title: e.target.value })}
+                            className="px-4 py-3 rounded-lg w-full bg-gray-700 my-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out shadow-md hover:bg-gray-600"
+                        />
+                        <input
+                            type="email"
+                            placeholder="Edit User Email"
+                            value={editingTask.email}
+                            onChange={(e) => setEditingTask({ ...editingTask, email: e.target.value })}  // Allow email modification
                             className="px-4 py-3 rounded-lg w-full bg-gray-700 my-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out shadow-md hover:bg-gray-600"
                         />
                         <input

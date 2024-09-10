@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   const handleBack = () => {
     navigate("/");  // Navigate to the previous page
-  };
+  }; 
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-900 text-white">
@@ -18,10 +18,10 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-3xl font-bold">Task Management Dashboard</h1>
           <div className="space-x-4">
-            <Link to="/login" className="px-4 py-2 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 transition">
+            <Link to="/auth/login" className="px-4 py-2 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 transition">
               Login
             </Link>
-            <Link to="/signup" className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-500 transition">
+            <Link to="/auth/signup" className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-500 transition">
               Sign Up
             </Link>
           </div>
@@ -65,7 +65,7 @@ const Dashboard = () => {
               onClick={handleBack}
               className="px-4 py-2 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 transition"
             >
-              Back
+              Assign Task
             </button>
           </div>
 
