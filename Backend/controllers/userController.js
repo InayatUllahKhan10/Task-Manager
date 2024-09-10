@@ -40,14 +40,28 @@ const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-    const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.status(200).json({ token, role: user.role, userId: user._id });
-    console.log(user);
-    
+    // Ensure JWT_SECRET is defined
+    if (!process.env.JWT_SECRET) {
+      throw new Error('JWT_SECRET environment variable is not defined');
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.status(200).json({
+      token,
+      userRole: user.role,  // Consistent naming with frontend
+      userId: user._id,
+      message: 'Login successful'
+    });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ error: error.message || 'Error logging in' });
   }
 };
+
 
 module.exports = { signupUser, loginUser };
