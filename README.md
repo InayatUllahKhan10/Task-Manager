@@ -1,5 +1,10 @@
 # Task Management Tools
-TAskHive
+TaskManager
+# Team Member
+## Kratika Agarwal
+## Inayat Ullah Khan 
+## Ashish Ansh
+## Prakhar Sharma
 
 Welcome to the *TaskHive* repository! This project is a React-based application designed to help you manage tasks efficiently. It features task tracking, project organization, and more to streamline your productivity.
 
