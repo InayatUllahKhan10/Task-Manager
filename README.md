@@ -1,8 +1,8 @@
 # Task Management Tools
 TaskManager
 # Team Member
+## Inayat Ullah Khan
 ## Kratika Agarwal
-## Inayat Ullah Khan 
 ## Ashish Ansh
 ## Prakhar Sharma
 
